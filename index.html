@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gmail Inbox Clone</title>
+  <style>
+.tabs {
+  display: flex !important;
+}
+.container {
+  display: flex;
+  min-height: calc(100vh - 64px); 
+  flex: 1;
+}
+.sidebar {
+  width: 260px;
+  background: #f6f8fc;
+  border-right: 1px solid #e0e0e0;
+  padding: 24px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+</style>
+
+  <!--Fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!--Icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-left">
+      <span class="material-icons icon-btn">menu</span>
+      <img class="gmail-logo" src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r2.png" alt="Gmail Logo"/>
+    </div>
+    <div class="header-center">
+      <span class="material-icons search-icon">search</span>
+      <input type="text" placeholder="Search mail" class="search-input" />
+      <span class="material-icons">tune</span>
+    </div>
+    <div class="header-right">
+      <span class="material-icons icon-btn">help_outline</span>
+      <span class="material-icons icon-btn">settings</span>
+      <span class="material-icons icon-btn">apps</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <button class="compose-btn" id="composeBtn">
+        <span class="material-icons">edit</span>
+        <span>Compose</span>
+      </button>
+      <nav>
+        <ul class="sidebar-list">
+          <li class="active"><span class="material-icons">inbox</span>Inbox <span class="count" id="inboxCount"></span></li>
+          <li><span class="material-icons">star</span>Starred</li>
+          <li><span class="material-icons">schedule</span>Snoozed</li>
+          <li><span class="material-icons">send</span>Sent</li>
+          <li><span class="material-icons">drafts</span>Drafts <span class="count">1</span></li>
+          <li><span class="material-icons">report</span>Spam <span class="count">3</span></li>
+          <li><span class="material-icons">delete</span>Trash</li>
+          <li><span class="material-icons">label</span>Categories</li>
+          <li><span class="material-icons">expand_more</span>More</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <div class="tabs">
+        <div class="tab active" data-tab="primary">
+          <span class="material-icons tab-icon" style="color:#d93025;">inbox</span>
+          Primary
+          <div class="tab-underline" style="background:#d93025;"></div>
+        </div>
+        <div class="tab" data-tab="social">
+          <span class="material-icons tab-icon" style="color:#1a73e8;">people</span>
+          Social
+          <span class="tab-badge" style="background:#1a73e8;">1 new</span>
+        </div>
+        <div class="tab" data-tab="promotions">
+          <span class="material-icons tab-icon" style="color:#188038;">local_offer</span>
+          Promotions
+          <span class="tab-badge" style="background:#188038;">6 new</span>
+        </div>
+        <div class="tab" data-tab="updates">
+          <span class="material-icons tab-icon" style="color:#e37400;">info</span>
+          Updates
+        </div>
+      </div>
+      <div class="toolbar">
+        <input type="checkbox" id="selectAll" />
+        <span class="material-icons icon-btn">arrow_drop_down</span>
+        <span class="material-icons icon-btn" id="refreshBtn" title="Refresh">refresh</span>
+        <span class="material-icons icon-btn">more_vert</span>
+        <div class="toolbar-right">
+          <span class="email-count" id="emailCount"></span>
+          <span class="material-icons icon-btn">chevron_left</span>
+          <span class="material-icons icon-btn">chevron_right</span>
+        </div>
+      </div>
+      <div class="email-list" id="emailList"></div>
+    </main>
+  </div>
+
+  <div class="compose-modal" id="composeModal">
+    <div class="compose-header">
+      <span>New Message</span>
+      <span class="material-icons close-compose" id="closeCompose">close</span>
+    </div>
+    <div class="compose-body">
+      <input type="email" placeholder="Recipients" id="recipients" />
+      <input type="text" placeholder="Subject" id="subject" />
+      <textarea placeholder="Compose email..." id="messageBody"></textarea>
+    </div>
+    <div class="compose-footer">
+      <button class="send-btn" id="sendBtn">
+        <span class="material-icons">send</span>Send
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
